@@ -1,6 +1,6 @@
-# Welcome to the Financial Data Pipeline Documentation
+# Welcome to the Finks Data Pipeline Documentation
 
-This site contains the architecture and design documentation for the financial data pipeline.
+This site contains the architecture and design documentation for Finks Data.
 
 ## Table of Contents
 
