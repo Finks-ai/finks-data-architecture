@@ -1,0 +1,12 @@
+beautifulsoup4
+mkdocs-roamlinks-plugin
+mkdocs-rss-plugin
+mkdocs-section-index
+mkdocs-with-pdf
+jinja2==3.0.3
+lxml
+mike
+mkdocs
+mkdocs-material
+mkdocs-material-extensions
+pymdown-extensions

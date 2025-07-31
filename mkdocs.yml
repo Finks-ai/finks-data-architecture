@@ -1,0 +1,62 @@
+site_name: Financial Data Pipeline
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Architecture:
+      - Overview: architecture-overview/index.md
+      - Core Components: core-components/index.md
+      - Data Lake: data-lake-architecture/index.md
+      - Service Architecture: service-architecture/index.md
+      - Detailed Flow: detailed-flow/index.md
+  - Implementation:
+      - Technology Stack: technology-stack/index.md
+      - Infrastructure as Code: infrastructure-as-code/index.md
+      - Transformation with dbt: transformation-layer/index.md
+  - Operations:
+      - Security: security-architecture/index.md
+      - Cost Optimization: cost-optimization/index.md
+      - Monitoring & Observability: monitoring-observability/index.md
+  - Reference:
+      - Technology Decisions: technology-decisions/index.md
