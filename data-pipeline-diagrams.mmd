@@ -1,0 +1,147 @@
+%% High-Level Architecture Diagram
+flowchart TB
+  subgraph "Infrastructure Layer (Pulumi)"
+    infra["Pulumi<br/>TypeScript/Python"]
+  end
+  subgraph "Orchestration Layer"
+    orchestrator["Prefect Server<br/>on ECS"]
+  end
+  infra --> orchestrator
+  orchestrator --> ingestion["Ingestion Layer"]
+  orchestrator --> processing["Processing Layer"]
+  orchestrator --> serving["Serving Layer"]
+
+
+%% Data Ingestion Flow
+flowchart LR
+  Prefect["Prefect Trigger"] --> ECSTask["ECS Task<br/>(Extract)"] --> Bronze["Bronze S3"]
+  Prefect --> Metadata["DynamoDB Metadata"]
+
+
+%% Data Processing Flow
+flowchart LR
+  BronzeS3["Bronze S3"] --> GlueJob["Glue Job<br/>(Cleanse)"] --> SilverS3["Silver S3"]
+  GlueJob --> QualityGate["Quality Gate"]
+
+
+%% Transformation Flow
+flowchart LR
+  Silver["Silver S3"] --> dbtCore["dbt Core<br/>on ECS"] --> Gold["Gold S3"]
+  dbtCore --> dbtTests["dbt Tests & Docs"]
+
+
+%% Network Security Diagram
+flowchart TB
+  subgraph "VPC (10.0.0.0/16)"
+    direction LR
+    subgraph PublicSubnet["Public Subnet"]
+      ALB[ALB]
+      NAT["NAT Gateway"]
+    end
+    subgraph PrivateSubnet["Private Subnet"]
+      ECSTasks["ECS Tasks"]
+      RDS[RDS]
+      ElastiCache[ElastiCache]
+      VPCEndpoints["VPC Endpoints<br/>(S3, DynamoDB)"]
+    end
+  end
+
+
+%% End-to-End Data Flow Diagram
+flowchart TB
+  %% Infrastructure Layer
+  subgraph InfrastructureLayer["Infrastructure Layer<br/>(Pulumi)"]
+    infraComp["VPC<br/>IAM Roles<br/>S3 Buckets<br/>ECS Clusters<br/>RDS"]
+  end
+
+  %% Orchestration Layer
+  subgraph OrchestrationLayer["Orchestration Layer"]
+    direction LR
+    PrefectServer["Prefect Server<br/>(ECS Fargate)"]
+    PrefectAgents["Prefect Agents<br/>(ECS Fargate)"]
+    RDSMetadata["PostgreSQL RDS<br/>(Metadata)"]
+    PrefectServer --> PrefectAgents --> RDSMetadata
+  end
+
+  infraComp --> OrchestrationLayer
+
+  %% Ingestion
+  subgraph BatchIngestion["Batch Ingestion"]
+    direction TB
+    MongoTask["MongoDB ECS Task"]
+    FMPTask["FMP API ECS Task"]
+  end
+
+  subgraph StreamIngestion["Stream Ingestion"]
+    direction TB
+    NewsStream["News Stream<br/>ECS Service"] --> KinesisStreams["Kinesis Streams"] --> KinesisFirehose["Kinesis Firehose"]
+  end
+
+  OrchestrationLayer --> BatchIngestion
+  OrchestrationLayer --> StreamIngestion
+
+  %% Bronze Zone
+  Bronze["Bronze Zone (S3)<br/>Raw, Immutable Data Storage<br/>Partitioned by source/year/month/day"]
+  BatchIngestion --> Bronze
+  StreamIngestion --> Bronze
+
+  %% S3 Event Notification chain
+  S3Event["S3 Event Notification"] --> LambdaTrigger["Lambda Function<br/>(Trigger)"] --> DynamoLineage["DynamoDB<br/>(Lineage)"] --> PrefectFlowTrigger["Prefect Flow<br/>Triggered"]
+
+  Bronze --> S3Event
+
+  %% Data Cleansing Layer
+  subgraph DataCleansing["Data Cleansing Layer"]
+    direction TB
+    GlueJobs["AWS Glue Jobs<br/>Schema Validation / Type Casting / Deduplication"]
+    DataQuality["Data Quality Gates<br/>(Great Expectations)"]
+    GlueJobs --> DataQuality
+  end
+
+  PrefectFlowTrigger --> DataCleansing
+
+  %% Silver Zone
+  SilverZone["Silver Zone (S3)<br/>Cleansed, Validated, Standardized<br/>Parquet Format, Partitioned"]
+  DataCleansing --> SilverZone
+
+  PrefectDBTFlow["Prefect Flow<br/>dbt trigger"]
+  SilverZone --> PrefectDBTFlow
+
+  %% Transformation Layer
+  subgraph Transformation["Transformation Layer"]
+    direction TB
+    dbtCoreECS["dbt Core on ECS<br/>Business Logic / Aggregations / Calculations"]
+    dbtTestsNode["dbt Tests<br/>(Quality Checks)"]
+    dbtCoreECS --> dbtTestsNode
+  end
+
+  PrefectDBTFlow --> Transformation
+
+  %% Gold Zone
+  GoldZone["Gold Zone (S3)<br/>Business-Ready Analytics Data<br/>Optimized Parquet Format"]
+  Transformation --> GoldZone
+
+  GlueCatalog["AWS Glue Catalog<br/>(Metadata)"]
+  LakeFormation["Lake Formation<br/>(Permissions)"]
+  GlueCrawler["Glue Crawler<br/>(Auto-discovery)"]
+
+  GoldZone --> GlueCatalog
+  GoldZone --> LakeFormation
+  GoldZone --> GlueCrawler
+
+  %% Serving Layer
+  subgraph ServingLayer["Serving Layer"]
+    direction LR
+    Athena["Athena<br/>(SQL Query)"]
+    APIGateway["API Gateway"]
+    QuickSight["QuickSight<br/>(BI Tools)"]
+    LambdaAPI["Lambda<br/>(REST API)"]
+    APIGateway --> LambdaAPI
+  end
+
+  GlueCatalog --> ServingLayer
+  LakeFormation --> ServingLayer
+  GlueCrawler --> ServingLayer
+
+  EndUsers["End Users<br/>Data Scientists / Business Analysts / External APIs / Dashboard Consumers"]
+  ServingLayer --> EndUsers
