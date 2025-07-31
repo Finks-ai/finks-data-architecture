@@ -1,4 +1,5 @@
 site_name: Financial Data Pipeline
+site_url: https://Finks-ai.github.io/finks-data-architecture/
 theme:
   name: material
   features:
