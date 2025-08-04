@@ -14,22 +14,10 @@ This architecture implements a modern ELT (Extract, Load, Transform) data pipeli
 
 ### High-Level Architecture Diagram
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                   Infrastructure Layer                       │
-│              (Pulumi - TypeScript/Python)                    │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-┌─────────────────────────────┴───────────────────────────────┐
-│                   Orchestration Layer                        │
-│                 (Prefect Server on ECS)                      │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-    ┌───────────────────────┼───────────────────────┐
-    │                       │                       │
-    v                       v                       v
-┌─────────────┐      ┌─────────────┐       ┌─────────────┐
-│  Ingestion  │      │ Processing  │       │   Serving   │
-│   Layer     │      │   Layer     │       │    Layer    │
-└─────────────┘      └─────────────┘       └─────────────┘
+```mermaid
+graph TD
+    A["Infrastructure Layer<br/>(Pulumi - TypeScript/Python)"] --> B["Orchestration Layer<br/>(Prefect Server on ECS)"];
+    B --> C["Ingestion<br/>Layer"];
+    B --> D["Processing<br/>Layer"];
+    B --> E["Serving<br/>Layer"];
 ```

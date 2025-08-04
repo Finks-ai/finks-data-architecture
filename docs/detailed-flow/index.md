@@ -2,17 +2,12 @@
 
 ### Data Ingestion Flow
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Prefect   │────▶│  ECS Task   │────▶│   Bronze    │
-│   Trigger   │     │  (Extract)  │     │     S3      │
-└─────────────┘     └─────────────┘     └─────────────┘
-       │                                         │
-       │                                         ▼
-       │                                 ┌─────────────┐
-       └────────────────────────────────▶│  Metadata   │
-                                         │  DynamoDB   │
-                                         └─────────────┘
+```mermaid
+graph TD
+    A["Prefect<br/>Trigger"] --> B["ECS Task<br/>(Extract)"];
+    B --> C["Bronze<br/>S3"];
+    C --> D["Metadata<br/>DynamoDB"];
+    A --> D;
 ```
 
 1. **Scheduled Trigger**: Prefect Server initiates flow based on schedule or event
@@ -56,17 +51,11 @@ def backfill_historical_data(
 
 ### Data Processing Flow
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Bronze    │────▶│  Glue Job   │────▶│   Silver    │
-│     S3      │     │ (Cleanse)   │     │     S3      │
-└─────────────┘     └─────────────┘     └─────────────┘
-                            │
-                            ▼
-                    ┌─────────────┐
-                    │   Quality   │
-                    │    Gate     │
-                    └─────────────┘
+```mermaid
+graph TD
+    A["Bronze<br/>S3"] --> B["Glue Job<br/>(Cleanse)"];
+    B --> C["Silver<br/>S3"];
+    B --> D["Quality<br/>Gate"];
 ```
 
 1. **Bronze to Silver**: AWS Glue job performs schema validation and cleansing
@@ -75,17 +64,11 @@ def backfill_historical_data(
 
 ### Transformation Flow
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Silver    │────▶│  dbt Core   │────▶│    Gold     │
-│     S3      │     │   on ECS    │     │     S3      │
-└─────────────┘     └─────────────┘     └─────────────┘
-                            │
-                            ▼
-                    ┌─────────────┐
-                    │  dbt Tests  │
-                    │   & Docs    │
-                    └─────────────┘
+```mermaid
+graph TD
+    A["Silver<br/>S3"] --> B["dbt Core<br/>on ECS"];
+    B --> C["Gold<br/>S3"];
+    B --> D["dbt Tests<br/>& Docs"];
 ```
 
 1. **Business Logic**: dbt models transform Silver data to Gold

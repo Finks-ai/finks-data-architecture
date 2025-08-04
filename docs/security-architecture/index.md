@@ -2,21 +2,22 @@
 
 ### Network Security
 
-```
-┌─────────────────────────────────────────┐
-│              VPC (10.0.0.0/16)          │
-├─────────────────┬───────────────────────┤
-│  Public Subnet  │   Private Subnet      │
-│  ┌───────────┐  │  ┌─────────────────┐ │
-│  │    ALB    │  │  │   ECS Tasks     │ │
-│  │           │  │  │   RDS           │ │
-│  └───────────┘  │  │   ElastiCache   │ │
-│                 │  └─────────────────┘ │
-│  ┌───────────┐  │  ┌─────────────────┐ │
-│  │    NAT    │  │  │ VPC Endpoints   │ │
-│  │  Gateway  │  │  │ (S3, DynamoDB)  │ │
-│  └───────────┘  │  └─────────────────┘ │
-└─────────────────┴───────────────────────┘
+```mermaid
+graph TD;
+    subgraph "VPC (10.0.0.0/16)";
+        subgraph "Public Subnet";
+            ALB;
+            NAT_Gateway["NAT Gateway"];
+        end;
+        subgraph "Private Subnet";
+            ECS_Tasks["ECS Tasks, RDS, ElastiCache"];
+            VPC_Endpoints["VPC Endpoints (S3, DynamoDB)"];
+        end;
+    end;
+
+    ALB --> ECS_Tasks;
+    ECS_Tasks -- "Egress" --> NAT_Gateway;
+    ECS_Tasks -- "AWS Services" --> VPC_Endpoints;
 ```
 
 ### Identity & Access Management
@@ -35,11 +36,13 @@
 
 ### Secrets Management
 
-```
-AWS Secrets Manager
-├── /prefect/database/connection
-├── /mongodb/connection-string
-├── /fmp-api/api-key
-├── /dbt/profiles/production
-└── /monitoring/datadog-api-key
+```mermaid
+graph TD
+    subgraph AWS Secrets Manager
+        A["/prefect/database/connection"];
+        B["/mongodb/connection-string"];
+        C["/fmp-api/api-key"];
+        D["/dbt/profiles/production"];
+        E["/monitoring/datadog-api-key"];
+    end
 ```

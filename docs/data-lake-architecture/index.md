@@ -12,15 +12,18 @@ The Bronze → Silver → Gold pattern provides clear data quality tiers:
 - **Retention**: Long-term (archive to Glacier after 90 days)
 - **Schema**: No schema enforcement
 
-```
-s3://bronze-zone/
-└── source={source_name}/
-    └── year={YYYY}/
-        └── month={MM}/
-            └── day={DD}/
-                └── hour={HH}/
-                    └── run_id={prefect_run_id}/
-                        └── {timestamp}_{batch_id}.json
+```mermaid
+graph TD
+    subgraph Bronze Zone
+        direction LR
+        A["s3://bronze-zone/"] --> B["source={source_name}/"];
+        B --> C["year={YYYY}/"];
+        C --> D["month={MM}/"];
+        D --> E["day={DD}/"];
+        E --> F["hour={HH}/"];
+        F --> G["run_id={prefect_run_id}/"];
+        G --> H["{timestamp}_{batch_id}.json"];
+    end
 ```
 
 #### Silver Zone (Cleansed Data)
@@ -31,13 +34,16 @@ s3://bronze-zone/
 - **Retention**: Medium-term (1-2 years hot storage)
 - **Schema**: Enforced via Glue Schema Registry
 
-```
-s3://silver-zone/
-└── entity={entity_name}/
-    └── year={YYYY}/
-        └── month={MM}/
-            └── day={DD}/
-                └── {entity}_{version}.parquet
+```mermaid
+graph TD
+    subgraph Silver Zone
+        direction LR
+        A["s3://silver-zone/"] --> B["entity={entity_name}/"];
+        B --> C["year={YYYY}/"];
+        C --> D["month={MM}/"];
+        D --> E["day={DD}/"];
+        E --> F["{entity}_{version}.parquet"];
+    end
 ```
 
 #### Gold Zone (Business Data)
@@ -48,12 +54,15 @@ s3://silver-zone/
 - **Retention**: Based on business needs
 - **Schema**: Documented business glossary
 
-```
-s3://gold-zone/
-└── domain={business_domain}/
-    └── dataset={dataset_name}/
-        └── version={schema_version}/
-            └── year={YYYY}/
-                └── month={MM}/
-                    └── {dataset}_{date}.parquet
+```mermaid
+graph TD
+    subgraph Gold Zone
+        direction LR
+        A["s3://gold-zone/"] --> B["domain={business_domain}/"];
+        B --> C["dataset={dataset_name}/"];
+        C --> D["version={schema_version}/"];
+        D --> E["year={YYYY}/"];
+        E --> F["month={MM}/"];
+        F --> G["{dataset}_{date}.parquet"];
+    end
 ```
