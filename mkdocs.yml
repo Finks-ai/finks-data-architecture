@@ -2,11 +2,16 @@ site_name: Finks Data Pipeline
 site_url: https://Finks-ai.github.io/finks-data-architecture/
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.png
   features:
     - navigation.tabs
     - navigation.sections
     - toc.integrate
     - navigation.top
+    - navigation.instant
+    - header.autohide
+    - content.tooltips
     - search.suggest
     - search.highlight
     - content.tabs.link
@@ -14,14 +19,24 @@ theme:
     - content.code.copy
   language: en
   palette:
+    # Palette toggle for light mode
     - scheme: default
+      primary: orange
+      accent: teal
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
+
+    # Palette toggle for dark mode
     - scheme: slate
+      primary: orange
+      accent: teal
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+
+extra_css:
+  - stylesheets/gruvbox.css
 
 plugins:
   - search
@@ -53,9 +68,14 @@ nav:
       - Detailed Flow: detailed-flow/index.md
   - Implementation:
       - Technology Stack: technology-stack/index.md
-      - Infrastructure as Code: infrastructure-as-code/index.md
+      - Infrastructure as Code:
+          - "overview": "infrastructure-as-code/index.md"
+          - "details": "infrastructure-as-code.md"
       - Transformation with dbt: transformation-layer/index.md
-      - Project Roadmap: project-roadmap.md
+      - Roadmaps:
+          - "Project Roadmap": "roadmaps/project-roadmap.md"
+          - "Aggressive Timeline": "roadmaps/aggressive-timeline.md"
+
   - Operations:
       - Security: security-architecture/index.md
       - Cost Optimization: cost-optimization/index.md
