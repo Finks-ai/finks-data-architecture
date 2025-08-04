@@ -2,16 +2,17 @@
 name = "finks-data-architecture-docs"
 version = "0.1.0"
 dependencies = [
-    "beautifulsoup4>=4.13.4",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocs-material-extensions",
+    "pymdown-extensions",
+    "beautifulsoup4",
+    "mkdocs-roamlinks-plugin",
+    "mkdocs-rss-plugin",
+    "mkdocs-section-index",
+    "mkdocs-with-pdf",
+    "lxml",
+    "mike",
     "git-notion==0.2.4",
-    "lxml>=6.0.0",
-    "mike>=2.1.3",
-    "mkdocs>=1.6.1",
-    "mkdocs-material>=9.6.16",
-    "mkdocs-material-extensions>=1.3.1",
-    "mkdocs-roamlinks-plugin>=0.3.2",
-    "mkdocs-rss-plugin>=1.17.3",
-    "mkdocs-section-index>=0.3.10",
-    "mkdocs-with-pdf>=0.9.3",
-    "pymdown-extensions>=10.16.1",
+    "urllib3<2.0",
 ]

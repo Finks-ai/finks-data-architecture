@@ -55,6 +55,7 @@ nav:
       - Technology Stack: technology-stack/index.md
       - Infrastructure as Code: infrastructure-as-code/index.md
       - Transformation with dbt: transformation-layer/index.md
+      - Project Roadmap: project-roadmap.md
   - Operations:
       - Security: security-architecture/index.md
       - Cost Optimization: cost-optimization/index.md
