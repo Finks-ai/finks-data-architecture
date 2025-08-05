@@ -83,7 +83,7 @@ finks-infrastructure/
 **Owner**: Data Engineer
 
 **Technology Stack**:
-- Python 3.11+
+- Python 3.12+ (managed with uv)
 - Prefect 2.x
 - AWS SDK (boto3)
 - PySpark (for Glue jobs)
@@ -199,7 +199,7 @@ finks-dbt/
 **Owner**: Data Engineer
 
 **Technology Stack**:
-- Python 3.11+
+- Python 3.12+ (managed with uv)
 - Docker
 - Various API SDKs
 - GitHub Actions

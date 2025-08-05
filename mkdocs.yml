@@ -75,6 +75,16 @@ nav:
       - Roadmaps:
           - "Project Roadmap": "roadmaps/project-roadmap.md"
           - "Aggressive Timeline": "roadmaps/aggressive-timeline.md"
+          - "Agentic Sessions":
+              - "Overview": "roadmaps/agentic-sessions/index.md"
+              - "Week 0: Preparation": "roadmaps/agentic-sessions/week-0-preparation.md"
+              - "Week 1: Foundation": "roadmaps/agentic-sessions/week-1-foundation.md"
+              - "Week 2: Infrastructure": "roadmaps/agentic-sessions/week-2-infrastructure.md"
+              - "Week 3: Orchestration": "roadmaps/agentic-sessions/week-3-orchestration.md"
+              - "Week 4: Transformation": "roadmaps/agentic-sessions/week-4-transformation.md"
+              - "Week 5: Pipeline": "roadmaps/agentic-sessions/week-5-pipeline.md"
+              - "Week 6: Production": "roadmaps/agentic-sessions/week-6-production.md"
+              - "Best Practices": "roadmaps/agentic-sessions/best-practices.md"
 
   - Operations:
       - Security: security-architecture/index.md

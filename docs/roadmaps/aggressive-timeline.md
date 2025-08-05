@@ -66,7 +66,8 @@ Focus on getting the development environment right and deploying the most basic 
 
 - **Epic: Local Development Setup** 
   - **Repository**: Create new `finks-infrastructure` repository
-  - **Task**: `[ ]` Set up local development tools (`black`, `ruff`, `pre-commit`, `pytest`).
+  - **Task**: `[ ]` Set up Python environment with uv and pyproject.toml.
+  - **Task**: `[ ]` Configure development tools (`black`, `ruff`, `pre-commit`, `pytest`) in pyproject.toml.
   - **Task**: `[ ]` Create docker-compose.yml for local Prefect Server and PostgreSQL.
   - **Task**: `[ ]` Set up LocalStack for S3/Glue/Athena testing.
   - **Task**: `[ ]` Document local setup in README.md.
@@ -147,6 +148,7 @@ Focus on dbt and Glue setup with proper testing before building flows.
 - **Epic: dbt Development Setup**
   - **Repository**: Create new `finks-dbt` repository
   - **Task**: `[ ]` Initialize dbt project with medallion folder structure.
+  - **Task**: `[ ]` Set up Python environment with uv and pyproject.toml including dbt-athena.
   - **Task**: `[ ]` Create Dockerfile for dbt with all required adapters.
   - **Task**: `[ ]` Set up dbt profiles for Athena connection.
   - **Task**: `[ ]` Create ECS task definition for ephemeral dbt runs.
@@ -177,6 +179,7 @@ Build the actual data pipeline components with comprehensive testing.
 
 - **Epic: Data Ingestion**
   - **Repository**: Create new `finks-ingestion` repository
+  - **Task**: `[ ]` Set up Python environment with uv and pyproject.toml.
   - **Task**: `[ ]` Develop Python ingestion script for FMP API with retry logic.
   - **Task**: `[ ]` Add data validation and error handling to ingestion script.
   - **Task**: `[ ]` Create Dockerfile and push to ECR.
