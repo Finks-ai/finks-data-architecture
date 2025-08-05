@@ -77,6 +77,7 @@ Focus on getting the development environment right and deploying the most basic 
   - **Repository**: `finks-infrastructure` (same as above)
   - **Task**: `[ ]` Initialize Pulumi project with clear component structure.
   - **Task**: `[ ]` Configure Pulumi for `dev` and `staging` environments only (defer prod).
+  - **Task**: `[ ]` Set up environment configuration with `.env.dev` and `.env.staging` files.
   - **Task**: `[ ]` Create S3 backend for Pulumi state with versioning and encryption.
   - **Task**: `[ ]` Write unit tests for Pulumi components using Pulumi's testing framework.
   - **Test**: `[ ]` Deploy and destroy a test stack successfully.

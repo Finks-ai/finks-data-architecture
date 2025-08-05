@@ -19,6 +19,7 @@ This document outlines the three-month engineering plan to materialize the finan
 
 - **Task**: `[ ]` Initialize Pulumi project in Python with a clear directory structure (`components/`, `config/`).
 - **Task**: `[ ]` Configure Pulumi for three environments: `dev`, `staging`, `prod` using separate stack configuration files.
+- **Task**: `[ ]` Set up environment configuration pattern using `.env` files. See [Environment Management](../environment-management/index.md).
 - **Task**: `[ ]` Provision a versioned S3 bucket to store Pulumi's state remotely.
 - **Task**: `[ ]` Set up local development quality tools: `black` for formatting, `ruff` for linting, and `pre-commit` hooks.
 

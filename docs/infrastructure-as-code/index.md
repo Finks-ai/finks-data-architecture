@@ -47,3 +47,15 @@ class DataLake(pulumi.ComponentResource):
         # Glue database for all zones
         self.glue_database = glue.Database(...)
 ```
+
+### Multi-Environment Support
+
+Infrastructure is deployed to separate environments using Pulumi stacks:
+
+```bash
+pulumi stack select dev      # Development environment
+pulumi stack select staging  # Staging environment
+pulumi stack select prod     # Production environment
+```
+
+Each environment has its own configuration in `config/{env}.yaml`. See [Environment Management](../environment-management/index.md) for details.

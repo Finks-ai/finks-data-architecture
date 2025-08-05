@@ -116,12 +116,14 @@ git clone git@github.com:YOUR_USERNAME/finks-ingestion.git
 export FMP_API_KEY="your-fmp-api-key"
 
 # Create a secure file for secrets (don't commit this!)
+# This is a temporary global env file - each repo will have its own later
 cat > ~/workspace/finks/.env << EOF
 AWS_ACCESS_KEY_ID=your-access-key-id
 AWS_SECRET_ACCESS_KEY=your-secret-access-key
 AWS_DEFAULT_REGION=ca-central-1
 FMP_API_KEY=your-fmp-api-key
 PULUMI_BACKEND_URL=s3://finks-pulumi-state-YOUR_ACCOUNT_ID
+ENVIRONMENT=dev
 EOF
 
 # Secure the file

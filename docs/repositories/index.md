@@ -317,6 +317,15 @@ All repositories follow GitFlow:
 
 ---
 
+## Environment Management
+
+All repositories support three environments: development, staging, and production. See the [Environment Management Guide](../environment-management/index.md) for configuration details.
+
+Each repository uses:
+- Environment-specific `.env` files
+- Progressive CI/CD deployment (dev → staging → prod)
+- Environment-aware configuration
+
 ## Monitoring and Observability
 
 Each repository contributes to observability:

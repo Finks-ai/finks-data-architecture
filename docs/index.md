@@ -10,6 +10,15 @@ During a review of the architecture diagrams, the following points were identifi
 
 2.  **Quality Gate in Data Processing Flow**: The "Data Processing Flow" diagram in the [Detailed Flow](detailed-flow/index.md) section includes a "Quality Gate" after the Glue Job. It is unclear what this gate represents. Is it a separate, dedicated service that validates the data, or is it a step within the Glue job itself? Defining this process more explicitly would clarify the data promotion criteria from Bronze to Silver.
 
+## Environment Overview
+
+The platform supports three environments:
+- **Development**: For active development (`dev-*-zone` buckets)
+- **Staging**: Production-like testing (`staging-*-zone` buckets)
+- **Production**: Live data processing (`prod-*-zone` buckets)
+
+See [Environment Management](environment-management/index.md) for complete configuration details.
+
 ## Table of Contents
 
 - [Architecture Overview](architecture-overview/index.md)

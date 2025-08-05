@@ -50,18 +50,24 @@ Include comprehensive error handling and helpful error messages.
      - make reset
      - make test
    - .env.example file
+   - config/ directory with .env.dev template
 
-3. Testing Harness (45 min)
+3. Environment Configuration (15 min)
+   - Set up config/ directory structure
+   - Create .env.dev, .env.staging templates
+   - Add environment loader (see [Environment Management](../../environment-management/index.md))
+
+4. Testing Harness (30 min)
    - Test script that validates all services
    - Sample data upload to LocalStack S3
    - Prefect connection test
 
-4. Documentation (30 min)
+5. Documentation (30 min)
    - README with troubleshooting guide
    - Architecture diagram
    - Common issues section
 
-5. Integration Test (30 min)
+6. Integration Test (30 min)
    - Full stack startup
    - Create test Prefect flow
    - Upload to S3 and verify
