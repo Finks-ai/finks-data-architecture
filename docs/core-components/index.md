@@ -32,7 +32,7 @@ def create_prefect_blocks():
 
     # S3 storage block
     s3_block = S3Bucket(
-        bucket_name="data-lake-bronze",
+        bucket_name="bronze-zone",
         credentials=aws_creds
     )
     s3_block.save(name="bronze-storage", overwrite=True)
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
 ### 5. Transformation Layer
 
-- **dbt Core on ECS**: Containerized transformation engine
+- **dbt-core on ECS**: Containerized transformation engine
 - **AWS Glue Jobs**: Bronze to Silver data cleansing
 - **Athena**: SQL interface for Silver zone queries
 - **Redshift Serverless**: Optional warehouse for complex analytics

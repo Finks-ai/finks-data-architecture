@@ -140,7 +140,7 @@ finks-pipelines/
 **Owner**: Analytics Engineer
 
 **Technology Stack**:
-- dbt Core 1.7+
+- dbt-core 1.7+
 - dbt-athena adapter
 - Docker
 - GitHub Actions
@@ -212,15 +212,15 @@ finks-ingestion/
 │   │   ├── Dockerfile
 │   │   ├── main.py          # FMP API connector
 │   │   ├── schemas.py       # Data validation
-│   │   └── requirements.txt
+│   │   └── pyproject.toml    # Dependencies managed with uv
 │   ├── mongodb/
 │   │   ├── Dockerfile
 │   │   ├── main.py          # MongoDB connector
-│   │   └── requirements.txt
+│   │   └── pyproject.toml    # Dependencies managed with uv
 │   └── news_stream/
 │       ├── Dockerfile
 │       ├── main.py          # News streaming connector
-│       └── requirements.txt
+│       └── pyproject.toml    # Dependencies managed with uv
 ├── shared/
 │   ├── utils.py            # Common utilities
 │   ├── s3_writer.py        # S3 upload logic

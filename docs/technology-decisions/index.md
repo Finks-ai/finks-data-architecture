@@ -8,7 +8,7 @@
 - **Testing**: Unit test infrastructure code
 - **Abstraction**: Create high-level components
 
-### Why dbt Core on ECS over alternatives?
+### Why dbt-core on ECS over alternatives?
 
 - **Control**: Full control over dbt version and plugins
 - **Cost**: No per-seat licensing like dbt Cloud
@@ -39,7 +39,7 @@
 version: "3.8"
 services:
   prefect-server:
-    image: prefecthq/prefect:2-latest
+    image: prefecthq/prefect:latest
     command: prefect server start
     environment:
       PREFECT_SERVER_API_HOST: 0.0.0.0
@@ -47,7 +47,7 @@ services:
       - "4200:4200"
 
   postgres:
-    image: postgres:14
+    image: postgres:latest
     environment:
       POSTGRES_DB: prefect
       POSTGRES_USER: prefect
@@ -62,9 +62,9 @@ services:
       - "4566:4566"
 
   dbt:
-    build: ./dbt_project
+    build: ./finks-dbt
     volumes:
-      - ./dbt_project:/dbt
+      - ./finks-dbt:/dbt
     environment:
       DBT_PROFILES_DIR: /dbt/profiles
 ```

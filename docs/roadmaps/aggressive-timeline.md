@@ -96,7 +96,7 @@ Build the foundational AWS resources with proper testing and monitoring.
 
 - **Epic: Data Lake & Secrets**
   - **Repository**: `finks-infrastructure`
-  - **Task**: `[ ]` Create Bronze, Silver, Gold S3 buckets with lifecycle policies.
+  - **Task**: `[ ]` Create Bronze Zone, Silver Zone, Gold Zone S3 buckets with lifecycle policies.
   - **Task**: `[ ]` Enable S3 access logging and CloudTrail for audit.
   - **Task**: `[ ]` Deploy AWS Secrets Manager with rotation policies.
   - **Task**: `[ ]` Create IAM roles with least-privilege policies for each service.

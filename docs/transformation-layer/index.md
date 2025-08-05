@@ -2,7 +2,7 @@
 
 ### dbt on ECS Architecture
 
-Running dbt Core on ECS provides:
+Running dbt-core on ECS provides:
 
 - **Isolation**: Each dbt run in clean environment
 - **Scalability**: Multiple concurrent transformations
@@ -12,7 +12,7 @@ Running dbt Core on ECS provides:
 ### dbt Project Structure
 
 ```
-dbt_project/
+finks-dbt/
 ├── models/
 │   ├── staging/           # Silver zone queries
 │   │   ├── stg_market_data.sql
@@ -74,7 +74,7 @@ name: dbt Pull Request CI
 on:
   pull_request:
     paths:
-      - "dbt_project/**"
+      - "finks-dbt/**"
 
 jobs:
   slim-ci:

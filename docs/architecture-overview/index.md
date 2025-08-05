@@ -1,6 +1,6 @@
 ## Architecture Overview
 
-This architecture implements a modern ELT (Extract, Load, Transform) data pipeline for financial data using Prefect for orchestration, AWS native services for compute and storage, Pulumi for infrastructure as code, and dbt Core for transformations.
+This architecture implements a modern ELT (Extract, Load, Transform) data pipeline for financial data using Prefect for orchestration, AWS native services for compute and storage, Pulumi for infrastructure as code, and dbt-core for transformations.
 
 ### Key Principles
 

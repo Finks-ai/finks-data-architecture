@@ -27,7 +27,7 @@ This document outlines the three-month engineering plan to materialize the finan
 - **Task**: `[ ]` **Networking**: Implement a `VPC` component in Pulumi to define the VPC, public/private subnets, and NAT Gateways.
 - **Task**: `[ ]` **Security**: Implement a `Security` component to manage Security Groups and baseline IAM Roles (e.g., `ecs-task-execution-role`).
 - **Task**: `[ ]` **Secrets**: Deploy AWS Secrets Manager and establish a clear naming convention (e.g., `/prod/prefect/database_url`). Store initial secrets.
-- **Task**: `[ ]` **Data Lake Storage**: Implement a `DataLake` component to create and configure the `bronze`, `silver`, and `gold` S3 buckets with versioning, access logging, and lifecycle policies.
+- **Task**: `[ ]` **Data Lake Storage**: Implement a `DataLake` component to create and configure the `bronze-zone`, `silver-zone`, and `gold-zone` S3 buckets with versioning, access logging, and lifecycle policies.
 
 ### Epic 3: CI/CD Automation (GitHub Actions)
 
@@ -60,11 +60,11 @@ This document outlines the three-month engineering plan to materialize the finan
 
 - **Task**: `[ ]` Write an AWS Glue script (PySpark) that reads the raw FMP data, applies schema validation, casts data types, and writes the output as Parquet to the `silver-zone`.
 - **Task**: `[ ]` Define the Glue Job as a Pulumi resource.
-- **Task**: `[ ]` Create a Prefect flow (`bronze-to-silver-fmp`) that triggers the Glue Job. Use an S3 event on the Bronze bucket as the trigger for this flow.
+- **Task**: `[ ]` Create a Prefect flow (`bronze-to-silver-fmp`) that triggers the Glue Job. Use an S3 event on the Bronze Zone bucket as the trigger for this flow.
 
 ### Epic 3: Business Transformation with dbt
 
-- **Task**: `[ ]` Initialize the `dbt_project` repository and set up the `profiles.yml` to connect to AWS Athena.
+- **Task**: `[ ]` Initialize the `finks-dbt` repository and set up the `profiles.yml` to connect to AWS Athena.
 - **Task**: `[ ]` Create a Docker image for the dbt project and define an ephemeral dbt ECS task runner in Pulumi.
 - **Task**: `[ ]` Build a staging model (`stg_fmp_market_data.sql`) that cleans and prepares data from the Silver table.
 - **Task**: `[ ]` Build a mart model (`daily_portfolio_summary.sql`) that creates a business-ready, aggregated table in the `gold-zone`.

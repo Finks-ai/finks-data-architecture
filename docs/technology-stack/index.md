@@ -5,7 +5,7 @@
 - **Pulumi**: Infrastructure as Code platform using real programming languages to define and deploy all AWS resources
 - **Prefect**: Workflow orchestration platform that schedules, monitors, and manages all data pipeline tasks
 - **AWS ECS (Fargate)**: Serverless container platform hosting Prefect components, data connectors, and dbt processes
-- **dbt Core**: SQL-based transformation framework running on ECS for turning raw data into analytics-ready datasets
+- **dbt-core**: SQL-based transformation framework running on ECS for turning raw data into analytics-ready datasets
 - **AWS S3**: Object storage serving as the data lake with Bronze/Silver/Gold zones
 - **AWS Glue**: Managed ETL service for Bronze-to-Silver data cleansing and schema validation
 - **AWS Athena**: Serverless SQL query engine for analyzing data directly in S3

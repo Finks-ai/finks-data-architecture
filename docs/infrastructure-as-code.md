@@ -11,7 +11,7 @@
 ### Pulumi Architecture Pattern
 
 ```
-pulumi-infrastructure/
+finks-infrastructure/
 ├── __main__.py                 # Main entry point
 ├── components/
 │   ├── networking.py          # VPC, subnets, security groups
@@ -35,14 +35,14 @@ class DataLake(pulumi.ComponentResource):
     def __init__(self, name, args, opts=None):
         super().__init__('custom:storage:DataLake', name, {}, opts)
 
-        # Bronze bucket with versioning and lifecycle
-        self.bronze_bucket = s3.Bucket(...)
+        # Bronze zone bucket with versioning and lifecycle
+        self.bronze_zone_bucket = s3.Bucket(...)
 
-        # Silver bucket with different retention
-        self.silver_bucket = s3.Bucket(...)
+        # Silver zone bucket with different retention
+        self.silver_zone_bucket = s3.Bucket(...)
 
-        # Gold bucket optimized for queries
-        self.gold_bucket = s3.Bucket(...)
+        # Gold zone bucket optimized for queries
+        self.gold_zone_bucket = s3.Bucket(...)
 
         # Glue database for all zones
         self.glue_database = glue.Database(...)
