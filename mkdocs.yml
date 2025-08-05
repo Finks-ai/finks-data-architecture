@@ -82,3 +82,4 @@ nav:
       - Monitoring & Observability: monitoring-observability/index.md
   - Reference:
       - Technology Decisions: technology-decisions/index.md
+      - Repositories: repositories/index.md
