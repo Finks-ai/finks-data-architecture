@@ -1,0 +1,53 @@
+/* Gruvbox Light Theme */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        #282828;
+  --md-primary-fg-color--light: #3c3836;
+  --md-primary-fg-color--dark:  #3c3836;
+  --md-primary-bg-color:        #fbf1c7;
+  --md-primary-bg-color--light: #fbf1c7;
+
+  --md-accent-fg-color:         #458588;
+  --md-accent-fg-color--transparent: #45858820;
+  --md-accent-bg-color:         #ebdbb2;
+
+  --md-default-fg-color:        #3c3836;
+  --md-default-fg-color--light: #bdae93;
+  --md-default-fg-color--lighter: #d5c4a1;
+  --md-default-bg-color:        #fbf1c7;
+
+  --md-code-fg-color:           #d65d0e;
+  --md-code-bg-color:           #ebdbb2;
+
+  --md-typeset-color:           #282828;
+  --md-typeset-a-color:         #458588;
+
+  --md-admonition-fg-color:     #282828;
+  --md-admonition-bg-color:     #ebdbb2;
+}
+
+/* Gruvbox Dark Theme */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #ebdbb2;
+  --md-primary-fg-color--light: #ebdbb2;
+  --md-primary-fg-color--dark:  #ebdbb2;
+  --md-primary-bg-color:        #282828;
+  --md-primary-bg-color--light: #3c3836;
+
+  --md-accent-fg-color:         #83a598;
+  --md-accent-fg-color--transparent: #83a59820;
+  --md-accent-bg-color:         #3c3836;
+
+  --md-default-fg-color:        #ebdbb2;
+  --md-default-fg-color--light: #bdae93;
+  --md-default-fg-color--lighter: #a89984;
+  --md-default-bg-color:        #282828;
+
+  --md-code-fg-color:           #fe8019;
+  --md-code-bg-color:           #3c3836;
+
+  --md-typeset-color:           #ebdbb2;
+  --md-typeset-a-color:         #83a598;
+
+  --md-admonition-fg-color:     #ebdbb2;
+  --md-admonition-bg-color:     #3c3836;
+}
