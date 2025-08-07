@@ -1,4 +1,6 @@
 .venv
+site/
+data-pipeline-architecture.md
 env.fish
 __pycache__/
 *.pyc

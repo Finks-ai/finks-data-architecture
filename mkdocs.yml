@@ -35,11 +35,21 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
 
+extra:
+  version:
+    provider: mike
+    default: latest
+
 extra_css:
   - stylesheets/gruvbox.css
 
 plugins:
   - search
+  - mike:
+      version_selector: true
+      css_dir: stylesheets
+      javascript_dir: javascripts
+      canonical_version: latest
 
 markdown_extensions:
   - pymdownx.highlight
